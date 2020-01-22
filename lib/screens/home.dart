@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlinemandi_seller/presentation/my_flutter_app_icons.dart';
 import 'package:onlinemandi_seller/screens/create_order.dart';
+import 'package:onlinemandi_seller/screens/app_drawer.dart';
 
 import 'daily_order.dart';
 import 'login_page.dart';
@@ -8,6 +9,7 @@ import 'order_history.dart';
 import 'orders.dart';
 import 'purchase_history.dart';
 import 'purchase_orders.dart';
+import 'stock_page.dart';
 
 class Home extends StatefulWidget{
   @override
@@ -20,111 +22,112 @@ class HomeState extends State<Home>{
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Theme.of(context).primaryColor,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(100),
+          preferredSize: Size.fromHeight(140),
           child: AppBar(
             flexibleSpace: Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
                 /*gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   stops: [0,6],
                   colors: [
-                    Color.fromRGBO (204, 255, 208,1).withOpacity(0.9),
-                    Color.fromRGBO(204, 255, 255,1).withOpacity(0.9),
+                    //Color.fromRGBO(204, 255, 255,1).withOpacity(0.9),
+                    Color.fromRGBO(255, 255, 255,9).withOpacity(0.9),
+                    Color.fromRGBO (209, 255, 208,1).withOpacity(0.9),
+
                   ],
                 ),*/
                 borderRadius: BorderRadius.only(
-                  bottomLeft: const Radius.circular(0),
+                  bottomLeft: const Radius.circular(100),
                   bottomRight: const Radius.circular(0),
                 ),
               ),
               child: Container(
-                //height: MediaQuery.of(context).size.height / 2.5,
-                padding: EdgeInsets.all(10),
-                child: Image.asset(
-                  'images/online-logo1.png',
-                  width: 140,
-                  height: 140,
-                ),
-                /*child: Row(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    //Icon(MyFlutterApp.rupee,size: 25,color:Color(0xFF609f38)),
-                    Text('Online Mandi',style: TextStyle(color:Color(0xFFF0EdE5),fontSize: 35,fontWeight: FontWeight.bold,
+                    Image.asset(
+                      'images/online-logo.png',
+                      width: 80,
+                      height: 80,
+                    ),
+                    //Icon(Icons.library_books,size: 25,color:Color(0xFFF0EdE5)),
+                    Text('Sales Diary',style: TextStyle(color:Colors.white,fontSize: 22,letterSpacing:1.2,fontWeight: FontWeight.bold,fontFamily: 'LobsterTwo',
                       shadows: <Shadow>[
                         Shadow(
-                          offset: Offset(3.0, 3.0),
-                          blurRadius: 8.0,
+                          offset: Offset(4.0, 4.0),
+                          blurRadius: 6.0,
                           //color: Color.fromARGB(255, 0, 0, 0),
-                          color: Color(0xFF609f38),
+                          color: Colors.black45,
                         ),
                       ],
                     )),
                   ],
-                ),*/
+                ),
               ),
             ),
             title: Text('',style: Theme.of(context).textTheme.headline,),
             centerTitle: true,
-            backgroundColor: Color(0xFFF0EdE5),
-            //backgroundColor:Colors.white,
+            //backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor:Colors.white,
             iconTheme: IconThemeData(color: Colors.white),
             elevation: 0,
             actions: <Widget>[
               Padding(
                 padding: EdgeInsets.all(10),
-                //child: Icon(MyFlutterApp.cog,size: 22,),
+                child: Icon(Icons.more_vert,size: 22,),
               ),
             ],
           ),
         ),
+        drawer: AppDrawer(),
         body: Container(
+          padding: EdgeInsets.only(top: 30,left: 10,right: 20),
+          margin: EdgeInsets.only(top: 0,left: 0,right: 0,bottom: 0),
           decoration: BoxDecoration(
-            color: Colors.black12,
-            /*gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: [0,6],
-                  colors: [
-                    Color.fromRGBO (204, 255, 208,1).withOpacity(0.9),
-                    Color.fromRGBO(204, 255, 255,1).withOpacity(0.9),
-                  ],
-                ),*/
+            //color: Color(0xFFF0EdE5),
+            color: Colors.white,
             borderRadius: BorderRadius.only(
-              bottomLeft: const Radius.circular(10),
-              bottomRight: const Radius.circular(10),
+              //topLeft: const Radius.circular(100),
+              topRight: const Radius.circular(100),
+              //bottomRight: const Radius.circular(100),
             ),
           ),
           child: GridView.count(
             crossAxisCount: 2,
             childAspectRatio: 1.2,
             padding: const EdgeInsets.all(10.0),
-            mainAxisSpacing: 9.2,
-            crossAxisSpacing: 9.2,
+            mainAxisSpacing: 1.0,
+            crossAxisSpacing: 1.0,
             children: <Widget>[
               InkWell(
-                child: Card(
-                  elevation: 9,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: const Radius.circular(12),
-                      bottomRight: const Radius.circular(12),
+                child: Container(
+                  child: Card(
+                    elevation: 9,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: const Radius.circular(20),
+                        topRight: const Radius.circular(20),
+                        bottomLeft: const Radius.circular(20),
+                      ),
                     ),
-                  ),
-                  color: Theme.of(context).accentColor,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(Icons.today,color: Color(0xFF609f38),size: 30),
-                      Padding(padding: EdgeInsets.only(top: 5,bottom: 5)),
-                      Text("Purchase Order",style: Theme.of(context).textTheme.body1),
-                      Padding(padding: EdgeInsets.only(top: 2,bottom: 2)),
-                      Text("(20/01/2020)",style: TextStyle(color:Color(0xFF609f38),fontSize: 12,fontWeight: FontWeight.w500)),
-                    ],
+                    color: Theme.of(context).accentColor,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(Icons.today,color: Color(0xFF609f38),size: 30),
+                        Padding(padding: EdgeInsets.only(top: 5,bottom: 5)),
+                        Text("Purchase Order",style: Theme.of(context).textTheme.body1),
+                        Padding(padding: EdgeInsets.only(top: 2,bottom: 2)),
+                        Text("(20/01/2020)",style: TextStyle(color:Color(0xFF609f38),fontSize: 10,fontWeight: FontWeight.w500)),
+                      ],
+                    ),
                   ),
                 ),
                 onTap: () => Navigator.of(context).pushNamed(PurchaseOrders.routeName),
@@ -134,8 +137,9 @@ class HomeState extends State<Home>{
                   elevation: 9,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                      topLeft: const Radius.circular(12),
-                      bottomRight: const Radius.circular(12),
+                      topLeft: const Radius.circular(20),
+                      topRight: const Radius.circular(20),
+                      bottomRight: const Radius.circular(20),
                     ),
                   ),
                   color: Theme.of(context).accentColor,
@@ -156,8 +160,9 @@ class HomeState extends State<Home>{
                   elevation: 9,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                      topLeft: const Radius.circular(12),
-                      bottomRight: const Radius.circular(12),
+                      topLeft: const Radius.circular(20),
+                      bottomLeft: const Radius.circular(20),
+                      bottomRight: const Radius.circular(20),
                     ),
                   ),
                   color: Theme.of(context).accentColor,
@@ -178,8 +183,9 @@ class HomeState extends State<Home>{
                   elevation: 9,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                      topLeft: const Radius.circular(12),
-                      bottomRight: const Radius.circular(12),
+                      bottomLeft: const Radius.circular(20),
+                      topRight: const Radius.circular(20),
+                      bottomRight: const Radius.circular(20),
                     ),
                   ),
                   color: Theme.of(context).accentColor,
@@ -200,8 +206,9 @@ class HomeState extends State<Home>{
                   elevation: 9,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                      topLeft: const Radius.circular(12),
-                      bottomRight: const Radius.circular(12),
+                      topLeft: const Radius.circular(20),
+                      topRight: const Radius.circular(20),
+                      bottomLeft: const Radius.circular(20),
                     ),
                   ),
                   color: Theme.of(context).accentColor,
@@ -222,8 +229,32 @@ class HomeState extends State<Home>{
                   elevation: 9,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                      topLeft: const Radius.circular(12),
-                      bottomRight: const Radius.circular(12),
+                      topLeft: const Radius.circular(20),
+                      topRight: const Radius.circular(20),
+                      bottomRight: const Radius.circular(20),
+                    ),
+                  ),
+                  color: Theme.of(context).accentColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.person,color: Color(0xFF609f38),size: 30),
+                      Padding(padding: EdgeInsets.only(top: 5,bottom: 5)),
+                      Text('Stock',style: Theme.of(context).textTheme.body1),
+                    ],
+                  ),
+                ),
+                onTap: () => Navigator.of(context).pushNamed(StockPage.routeName),
+              ),
+              InkWell(
+                child: Card(
+                  elevation: 9,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: const Radius.circular(20),
+                      topLeft: const Radius.circular(20),
+                      bottomRight: const Radius.circular(20),
                     ),
                   ),
                   color: Theme.of(context).accentColor,

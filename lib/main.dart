@@ -11,6 +11,9 @@ import 'screens/orders.dart';
 import 'screens/purchase_history.dart';
 import 'screens/purchase_orders.dart';
 import 'screens/signup_page.dart';
+import 'screens/app_drawer.dart';
+import 'screens/stock_list.dart';
+import 'screens/stock_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,9 +26,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
         //primaryColor: Color(0xFFebe8a4),
-        primaryColor: Color(0xFF00FFFF),
+        primaryColor: Color(0xFF609f38),
         // home page card color
-        accentColor: Color(0xFFe8e8e8),
+        accentColor: Color(0xFFffffff),
+        //accentColor: Color(0xFFe8e8e8),
         //home page icon color
         iconTheme: IconThemeData(
           color: Colors.blue,
@@ -55,6 +59,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Home(),
       routes: {
+        AppDrawer.routeName:(ctx) => AppDrawer(),
         Home.routeName:(ctx) => Home(),
         PurchaseOrders.routeName:(ctx) => PurchaseOrders(),
         PurchaseHistory.routeName:(ctx) => PurchaseHistory(),
@@ -64,6 +69,8 @@ class MyApp extends StatelessWidget {
         Order.routeName:(ctx) => Order(),
         OrderHistory.routeName:(ctx) => OrderHistory(),
         CreateOrders.routeName:(ctx) => CreateOrders(),
+        StockPage.routeName:(ctx) => StockPage(),
+        StockList.routeName:(ctx) => StockList(),
         Login.routeName:(ctx) => Login(),
         SignUp.routeName:(ctx) => SignUp(),
       },

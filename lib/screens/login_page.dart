@@ -21,14 +21,14 @@ class LoginState extends State<Login> {
           decoration: BoxDecoration(
             //color: Colors.black12,
             gradient: LinearGradient(
-               begin: Alignment.topLeft,
-               end: Alignment.bottomRight,
-               stops: [0,1],
-               colors: [
-                 //Color.fromRGBO(204, 255, 255,1).withOpacity(0.9),
-                 Color.fromRGBO (204, 255, 208,1).withOpacity(0.9),
-                 Color.fromRGBO(255, 255, 255,9).withOpacity(0.9),
-               ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: [0,1],
+              colors: [
+                //Color.fromRGBO(204, 255, 255,1).withOpacity(0.9),
+                Color.fromRGBO (204, 255, 208,1).withOpacity(0.9),
+                Color.fromRGBO(255, 255, 255,9).withOpacity(0.9),
+              ],
             ),
             borderRadius: BorderRadius.only(
               bottomLeft: const Radius.circular(10),
@@ -41,31 +41,48 @@ class LoginState extends State<Login> {
                 //padding: EdgeInsets.all(40),
                 height: MediaQuery.of(context).size.height / 5,
               ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    'images/online-logo.png',
+                    width: 80,
+                    height: 80,
+                  ),
+                  //Icon(Icons.library_books,size: 25,color:Color(0xFFF0EdE5)),
+                  Text('Sales Diary',style: TextStyle(color:Color(0xFF609f38),fontSize: 22,letterSpacing:1.2,fontWeight: FontWeight.bold,fontFamily: 'LobsterTwo',
+                    shadows: <Shadow>[
+                      Shadow(
+                        offset: Offset(4.0, 4.0),
+                        blurRadius: 6.0,
+                        //color: Color.fromARGB(255, 0, 0, 0),
+                        color: Colors.black38,
+                      ),
+                    ],
+                  )),
+                ],
+              ),
               Container(
-                padding: EdgeInsets.all(20),
-                child: Image.asset(
-                  'images/online-logo1.png',
-                  width: 100,
-                  height: 100,
-                ),
+                padding: EdgeInsets.all(10),
               ),
               Row(
                 children: <Widget>[
                   Padding(padding: EdgeInsets.only(top: 10,right: 10),
-                    child: Icon(Icons.person,size: 24,color: Colors.black45,),
+                    child: Icon(Icons.person,size: 24,color: Color(0xFF609f38)),
                   ),
                   Expanded(child: TextFormField(
                     decoration: new InputDecoration(
                       labelText: "User Name",
                       labelStyle: TextStyle(
-                        color: Colors.black45,
+                        color: Color(0xFF609f38),
                         fontSize: 14.0,
                         fontWeight: FontWeight.w300,
                       ),
                       fillColor: Colors.white,
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.black45,
+                          color: Color(0xFF609f38),
                           width: 2,
                         ),
                         borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -90,20 +107,20 @@ class LoginState extends State<Login> {
               Row(
                 children: <Widget>[
                   Padding(padding: EdgeInsets.only(top: 10,right: 10),
-                    child: Icon(Icons.vpn_key,size: 24,color: Colors.black45,),
+                    child: Icon(Icons.vpn_key,size: 24,color: Color(0xFF609f38),),
                   ),
                   Expanded(child: TextFormField(
                     decoration: new InputDecoration(
                       labelText: "Password",
                       labelStyle: TextStyle(
-                        color: Colors.black45,
+                        color: Color(0xFF609f38),
                         fontSize: 14.0,
                         fontWeight: FontWeight.w300,
                       ),
                       fillColor: Colors.white,
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.black45,
+                          color: Color(0xFF609f38),
                           width: 2,
                         ),
                         borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -126,28 +143,30 @@ class LoginState extends State<Login> {
               ),
               Padding(padding: EdgeInsets.only(top: 20)),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.all(0),
-                    margin: EdgeInsets.all(10),
+                    margin: EdgeInsets.all(5),
                     width: MediaQuery.of(context).size.width/ 1.2,
                     //margin: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
-                        color: Colors.black45,
+                        color: Color(0xFF609f38),
                       ),
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: MaterialButton(
                       elevation: 10.0,
-                      child: Text('Log In',style: TextStyle(color: Colors.black45,fontSize: 16,fontWeight: FontWeight.w400,fontFamily: 'Lato')),
+                      child: Text('Log In',style: TextStyle(color: Color(0xFF609f38),fontSize: 16,fontWeight: FontWeight.w600,fontFamily: 'Lato')),
                     ),
                   ),
                 ],
               ),
               Container(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[

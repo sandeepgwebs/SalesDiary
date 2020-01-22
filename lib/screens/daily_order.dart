@@ -27,8 +27,8 @@ class DailyOrderState extends State<DailyOrder>{
             },
           ),
           centerTitle: true,
-          backgroundColor: Color(0xFFF0EdE5),
-          //backgroundColor:Colors.white,
+          //backgroundColor: Color(0xFFF0EdE5),
+          backgroundColor:Colors.white,
           iconTheme: IconThemeData(color: Colors.white),
           elevation: 10,
           actions: <Widget>[

@@ -129,6 +129,7 @@ class AddItemState extends State<AddItem>{
                           child: Container(
                             margin: EdgeInsets.only(left: 4,right: 0,top: 0),
                             child: TextFormField(
+                              keyboardType: TextInputType.number,
                               decoration: new InputDecoration(
                                 labelText: "Item Qty",
                                 fillColor: Colors.white,
@@ -160,6 +161,7 @@ class AddItemState extends State<AddItem>{
                     ),
                     Padding(padding: EdgeInsets.only(top: 20)),
                     TextFormField(
+                      keyboardType: TextInputType.number,
                       decoration: new InputDecoration(
                         labelText: "Item Price",
                         labelStyle: TextStyle(
