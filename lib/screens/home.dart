@@ -78,9 +78,12 @@ class HomeState extends State<Home>{
             iconTheme: IconThemeData(color: Colors.white),
             elevation: 0,
             actions: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Icon(Icons.more_vert,size: 22,),
+              InkWell(
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Icon(Icons.more_vert,size: 22,),
+                ),
+                onTap: () => Navigator.of(context).pushNamed(Login.routeName),
               ),
             ],
           ),
@@ -247,7 +250,7 @@ class HomeState extends State<Home>{
                 ),
                 onTap: () => Navigator.of(context).pushNamed(StockPage.routeName),
               ),
-              InkWell(
+              /*InkWell(
                 child: Card(
                   elevation: 9,
                   shape: RoundedRectangleBorder(
@@ -269,7 +272,7 @@ class HomeState extends State<Home>{
                   ),
                 ),
                 onTap: () => Navigator.of(context).pushNamed(Login.routeName),
-              ),
+              ),*/
             ],
           ),
         ),

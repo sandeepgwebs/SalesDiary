@@ -12,7 +12,6 @@ class CreateOrdersState extends State<CreateOrders>{
   List<DropdownMenuItem> items = [];
   String selectedValue;
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
-
   List<String> _data = ['Sun'];
 
   Widget build(BuildContext context){
@@ -107,30 +106,41 @@ class CreateOrdersState extends State<CreateOrders>{
                 color: Colors.grey,
                 height: 1,
               ),
-              Positioned(
-                child: new FloatingActionButton(
-                  child: new Icon(Icons.add),
-                  onPressed: () {
-                    print('FAB tapped!');
-                  },
-                  backgroundColor: Colors.blueGrey,
-                ),
-                right: 100.0,
-                top: 100,
-                //top: appBarHeight - 5.0,
-              ),
               Expanded(
-                //child: _customerslist(),
-                child: ListView(
+                child: Stack(
                   children: <Widget>[
                     Container(
-                      height:MediaQuery.of(context).size.height / 2.2,
+                      margin: EdgeInsets.only(bottom: 40),
+                      height:MediaQuery.of(context).size.height / 1.4,
                       child: AnimatedList(
                         key: _listKey,
                         initialItemCount: _data.length,
                         itemBuilder: (context, index, animation) {
                           return _buildItem(_data[index], animation);
                         },
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          InkWell(
+                            child: Container(
+                              padding: EdgeInsets.fromLTRB(15,10,15,10),
+                              decoration: BoxDecoration(
+                                color: Color(0xFF609f38),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(Icons.add,color:Color(0xFFF0EdE5),size: 25),
+                            ),
+                            onTap: () {
+                              _insertSingleItem();
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -234,6 +244,7 @@ class CreateOrdersState extends State<CreateOrders>{
                               Container(
                                 width: MediaQuery.of(context).size.width / 7,
                                 child: TextFormField(
+                                  textAlign: TextAlign.center,
                                   keyboardType: TextInputType.number,
                                   decoration: new InputDecoration(
                                     //labelText: "Customer Name",
@@ -252,7 +263,7 @@ class CreateOrdersState extends State<CreateOrders>{
                                     ),
                                     errorBorder: InputBorder.none,
                                     hintStyle: TextStyle(fontSize: 14,color: Color(0xFF969799)),
-                                    contentPadding: EdgeInsets.only(left: 5, bottom: 0, top: 0, right: 0),
+                                    contentPadding: EdgeInsets.only(left: 0, bottom: 0, top: 0, right: 0),
                                   ),style: Theme.of(context).textTheme.body1,
                                 ),
                               ),
@@ -304,328 +315,7 @@ class CreateOrdersState extends State<CreateOrders>{
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Color(0xFF609f38),
-          child: Container(
-            child: MaterialButton(
-              padding: EdgeInsets.all(0),
-              elevation: 0,
-              child: Icon(Icons.add,color:Color(0xFFF0EdE5),size: 25),
-              onPressed: () {
-                _insertSingleItem();
-              },
-            ),
-          ),
-          mini: true,
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-        bottomNavigationBar: BottomAppBar(
-          /*child: Card(
-            color: Color(0xFFF0EdE5),
-            margin: EdgeInsets.all(0),
-            child: SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(8,10,8,10),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.fromLTRB(0,0,4,5),
-                          child: TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: "Customer Name",
-                              labelStyle: TextStyle(
-                                color: Color(0xFF609f38),
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              fillColor: Colors.white,
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFF609f38),
-                                  width: 3,
-                                ),
-                                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                              ),
-                              errorBorder: InputBorder.none,
-                              hintStyle: TextStyle(fontSize: 14,color: Color(0xFF969799)),
-                              contentPadding: EdgeInsets.only(left: 5, bottom: 5, top: 0, right: 0),
-                            ),style: (TextStyle(fontSize: 12)),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.fromLTRB(4,0,0,5),
-                          child: TextFormField(
-                            decoration: new InputDecoration(
-                              labelText: "Phone Number",
-                              labelStyle: TextStyle(
-                                color: Color(0xFF609f38),
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              fillColor: Colors.white,
-                              border: OutlineInputBorder(
-                                    borderRadius: new BorderRadius.circular(8),
-                                    borderSide: new BorderSide(
-                                      color: Color(0xFF609f38),
-                                    ),
-                                  ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFF609f38),
-                                  width: 3,
-                                ),
-                                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                              ),
-                              errorBorder: InputBorder.none,
-                              //hintStyle: TextStyle(fontSize: 14,color: Color(0xFF969799)),
-                              contentPadding: EdgeInsets.only(left: 5, bottom: 5, top: 0, right: 0),
-                            ),style: (TextStyle(fontSize: 12)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(padding: EdgeInsets.only(top: 8)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text('Sub Total : ',style: Theme.of(context).textTheme.body1),
-                      Row(
-                        children: <Widget>[
-                          Padding(padding: EdgeInsets.only(top: 2),
-                            child: Icon(MyFlutterApp.rupee,size: 14,color: Colors.black),
-                          ),
-                          Text('350.00 ',style: Theme.of(context).textTheme.body1),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Padding(padding: EdgeInsets.only(top: 10)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text('Discount : ',style: Theme.of(context).textTheme.body2),
-                      Row(
-                        children: <Widget>[
-                          Padding(padding: EdgeInsets.only(top: 2),
-                            child: Icon(MyFlutterApp.rupee,size: 15,color: Color(0xFF609f38)),
-                          ),
-                          //Text('50.00 ',style: Theme.of(context).textTheme.body2),
-                          Container(
-                            width: MediaQuery.of(context).size.width / 7,
-                            child: TextFormField(
-                              keyboardType: TextInputType.number,
-                              decoration: new InputDecoration(
-                                //labelText: "Customer Name",
-                                labelStyle: TextStyle(
-                                  color: Color(0xFF609f38),
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                fillColor: Colors.white,
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF609f38),
-                                    width: 3,
-                                  ),
-                                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                ),
-                                errorBorder: InputBorder.none,
-                                hintStyle: TextStyle(fontSize: 14,color: Color(0xFF969799)),
-                                contentPadding: EdgeInsets.only(left: 5, bottom: 0, top: 0, right: 0),
-                              ),style: Theme.of(context).textTheme.body1,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Padding(padding: EdgeInsets.only(top: 10)),
-                  Padding(padding: EdgeInsets.only(top: 10)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text('Total : ',style: Theme.of(context).textTheme.body1),
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF609f38),
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Padding(padding: EdgeInsets.only(top: 2),
-                              child: Icon(MyFlutterApp.rupee,size: 14,color: Colors.white),
-                            ),
-                            Text('300.00 ',style: Theme.of(context).textTheme.title),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.fromLTRB(20,10,20,10),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF609f38),
-                          borderRadius: BorderRadius.circular(50),
-                          border: Border.all(
-                            width: 2,
-                            color: Colors.white,
-                          ),
-                        ),
-                        child: Center(
-                          child: Text('Create *',style: Theme.of(context).textTheme.title),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),*/
-        ),
       ),
-    );
-  }
-
-  Widget _customerslist() {
-    return ListView(
-      children: <Widget>[
-        Table(
-          border: TableBorder(
-            horizontalInside: BorderSide(
-              color: Colors.grey,
-              style: BorderStyle.solid,
-              width: 1.0,
-            ),
-            /*verticalInside: BorderSide(
-               color: Colors.black,
-               style: BorderStyle.solid,
-               width: 1.0,
-            ),*/
-          ),
-          children: [
-            TableRow( children: [
-              Container(
-                //color: Color(0xFFF0EdE5),
-                padding: EdgeInsets.only(top:0,bottom:0,left: 4,right: 4),
-                child: Center(
-                  child: _widget(),
-                ),
-                /*child: Column(
-                  children: <Widget>[
-                     Center(
-                      child: _widget(),
-                     ),
-                  ],
-                ),*/
-              ),
-              Container(
-                //color: Color(0xFFF0EdE5),
-                child: Center(
-                  child: Container(
-                    margin: EdgeInsets.only(left: 4,right: 0,top: 5),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                        icon: Icon(
-                          Icons.arrow_drop_down,
-                          color: Colors.black,
-                          size: 22,
-                        ),
-                        items: [
-                          DropdownMenuItem<String>(
-                            value: "1",
-                            child: Text(
-                              "Unit",style: Theme.of(context).textTheme.subhead,
-                            ),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "2",
-                            child: Text(
-                              "kg",style:  Theme.of(context).textTheme.subhead,
-                            ),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "2",
-                            child: Text(
-                              "dez",style:  Theme.of(context).textTheme.subhead,
-                            ),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: "2",
-                            child: Text(
-                              "piece",style:  Theme.of(context).textTheme.subhead,
-                            ),
-                          ),
-                        ],
-                        onChanged: (value) {
-                        },
-                        value: "1",
-                        elevation: 16,
-                        //style: TextStyle(color: Colors.black, fontSize: 20),
-                        isDense: true,
-                        //iconSize: 38.0,
-                        iconSize: 38.0,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                //color: Color(0xFFF0EdE5),
-                //padding: EdgeInsets.fromLTRB(2,5,2,5),
-                child: Center(
-                  //child:Text("3000",style: Theme.of(context).textTheme.subhead),
-                  child: TextFormField(
-                    cursorColor: Color(0xFF198C76),
-                    keyboardType: TextInputType.number,
-                    decoration: new InputDecoration(
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: const BorderRadius.all(Radius.circular(5)),
-                      ),
-                      errorBorder: InputBorder.none,
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      ),
-                      disabledBorder: InputBorder.none,
-                      hintStyle: TextStyle(fontSize: 13,color: Colors.black),
-                      hintText: '1',
-                      fillColor: Colors.white,
-                      //suffixIcon: Icon(MyFlutterApp.rupee,size: 15,color: Colors.black),
-                      //prefixIcon: Icon(MyFlutterApp.rupee,size: 14,color: Colors.transparent),
-                      contentPadding: EdgeInsets.only(left: 20, bottom: 0, top: 14, right: 0),
-                    ),style: TextStyle(fontSize: 15,color: Colors.black),
-                  ),
-                ),
-              ),
-              Container(
-                // color: Color(0xFFdddddd),
-                padding: EdgeInsets.fromLTRB(2,15,2,15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(top: 2),
-                      child: Icon(MyFlutterApp.rupee,size: 14,color: Colors.black),
-                    ),
-                    Text("80",style: Theme.of(context).textTheme.subhead),
-                  ],
-                ),
-              ),
-            ]),
-          ],
-        ),
-      ],
     );
   }
 
@@ -646,15 +336,6 @@ class CreateOrdersState extends State<CreateOrders>{
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                /*gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0,6],
-                    colors: [
-                      Color.fromRGBO(0, 153, 255,9).withOpacity(0.9),
-                      Color.fromRGBO (0, 255, 255,9).withOpacity(0.9),
-                    ],
-                  ),*/
                 color: Color(0xFF609f38),
                 borderRadius: BorderRadius.circular(50),
               ),
@@ -802,6 +483,7 @@ class CreateOrdersState extends State<CreateOrders>{
                   child: Center(
                     //child:Text("3000",style: Theme.of(context).textTheme.subhead),
                     child: TextFormField(
+                      textAlign: TextAlign.center,
                       cursorColor: Color(0xFF198C76),
                       keyboardType: TextInputType.number,
                       decoration: new InputDecoration(
@@ -826,7 +508,7 @@ class CreateOrdersState extends State<CreateOrders>{
                         fillColor: Colors.white,
                         //suffixIcon: Icon(MyFlutterApp.rupee,size: 15,color: Colors.black),
                         //prefixIcon: Icon(MyFlutterApp.rupee,size: 14,color: Colors.transparent),
-                        contentPadding: EdgeInsets.only(left: 20, bottom: 0, top: 14, right: 0),
+                        contentPadding: EdgeInsets.only(left: 0, bottom: 0, top: 14, right: 0),
                       ),style: TextStyle(fontSize: 15,color: Colors.black),
                     ),
                   ),
